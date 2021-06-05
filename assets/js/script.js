@@ -53,10 +53,10 @@ function generatePassword() {
 
   // for testing -- REMOVE LATER
   var passwordLowerCase = true;
-  var passwordUpperCase = false;
-  var passwordNumbers = true;
+  var passwordUpperCase = true;
+  var passwordNumbers = false;
   var passwordSpecialCharacters = true;
-  var passwordLength = 24;
+  var passwordLength = 8;
 
   let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   let specialCharacters = ['!','#','$','%','&','(',')','*','+','-',':',';','?','_','^','~'];
@@ -86,6 +86,7 @@ function generatePassword() {
 
   for (let i = 0; i < passwordLength; i++) {
     characterAdded = false;
+    //loops until generated random character is of a requsted type, then adds it randomly the password 
     while (characterAdded == false) {
       characterSet = Math.floor(Math.random() * 4);
       randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
@@ -110,7 +111,7 @@ function generatePassword() {
 
   console.log(splitPassword.length);
   console.log(splitPassword.join(''));
-  return splitPassword.join('');
+  return splitPassword.join('');   //joins randomized characters spliced into an array into a returnable String
 }
 
 // Get references to the #generate element
