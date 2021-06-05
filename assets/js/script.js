@@ -3,6 +3,7 @@ function generatePassword() {
   var passwordLength = 0;
   var splitPassword = [];
 
+  //user prompts for password length and types of characters to include (uppercase/lowercase letters, numbers, special character)
   while (passwordLength < 8 || passwordLength > 128) {
     var passwordLength = prompt('Choose a password length (8 - 128 characters)');
   }
