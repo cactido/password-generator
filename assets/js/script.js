@@ -109,8 +109,6 @@ function generatePassword() {
     }
   }
 
-  console.log(splitPassword.length);
-  console.log(splitPassword.join(''));
   return splitPassword.join('');   //joins randomized characters spliced into an array into a returnable String
 }
 
