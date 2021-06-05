@@ -3,7 +3,6 @@ function generatePassword() {
   var passwordLength = 0;
   var splitPassword = [];
 
-  /*
   while (passwordLength < 8 || passwordLength > 128) {
     var passwordLength = prompt('Choose a password length (8 - 128 characters)');
   }
@@ -14,13 +13,12 @@ function generatePassword() {
     var passwordNumbers = confirm('Include numbers?\n(OK = yes, Cancel = no)');
     var passwordSpecialCharacters = confirm('Include special characters?\n(OK = yes, Cancel = no)');
 
-    if (passwordLowerCase == false && passwordUpperCase == false && passwordNumerical == false && passwordSpecialCharacters == false) {
+    if (passwordLowerCase == false && passwordUpperCase == false && passwordNumbers == false && passwordSpecialCharacters == false) {
       alert('Please choose at least one option from lower case, upper case, numerical and special characters.');
     } else {
       break;
     }
   }
-  */
 
   // generates a random lower case letter, than adds it to a random part of the password array
   function addLowerCase () {
@@ -51,12 +49,13 @@ function generatePassword() {
     splitPassword.splice(randomPosition,0,currentCharacter);
   }
 
-  // for testing -- REMOVE LATER
+  /* for testing -- bypasses prompts
   var passwordLowerCase = true;
   var passwordUpperCase = true;
   var passwordNumbers = false;
-  var passwordSpecialCharacters = true;
-  var passwordLength = 8;
+  var passwordSpecialCharacters = false;
+  var passwordLength = 128;
+  */
 
   let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   let specialCharacters = ['!','#','$','%','&','(',')','*','+','-',':',';','?','_','^','~'];
