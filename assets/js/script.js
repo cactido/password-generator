@@ -22,8 +22,38 @@ function generatePassword() {
   }
   */
 
+  // generates a random lower case letter, than adds it to a random part of the password array
+  function addLowerCase () {
+    var currentCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
+    var randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
+    splitPassword.splice(randomPosition,0,currentCharacter);
+  }
+
+  // generates a random upper case letter, then adds it to a random part of the password array
+  function addUpperCase () {
+    var currentCharacter = alphabet[Math.floor(Math.random() * (alphabet.length))];
+    currentCharacter = currentCharacter.toUpperCase();
+    var randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
+    splitPassword.splice(randomPosition,0,currentCharacter);
+  }
+
+  // generates a random number, then adds it to a random part of the password array
+  function addNumber () {
+    var currentCharacter = Math.floor(Math.random() * 10);
+    var randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
+    splitPassword.splice(randomPosition,0,currentCharacter);
+  }
+
+  // generates a random special character, then adds it to a random part of the password array
+  function addSpecial () {
+    var currentCharacter = specialCharacters[Math.floor(Math.random() * (specialCharacters.length))];
+    var randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
+    splitPassword.splice(randomPosition,0,currentCharacter);
+  }
+
+  // for testing -- REMOVE LATER
   var passwordLowerCase = true;
-  var passwordUpperCase = true;
+  var passwordUpperCase = false;
   var passwordNumbers = true;
   var passwordSpecialCharacters = true;
   var passwordLength = 24;
@@ -31,41 +61,50 @@ function generatePassword() {
   let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   let specialCharacters = ['!','#','$','%','&','(',')','*','+','-',':',';','?','_','^','~'];
 
-  var currentCharacter = '';
-  var randomPosition = 0;
-
+  // forces at least one of the requested types of characters
   if (passwordLowerCase == true) {
-    currentCharacter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    splitPassword.push(currentCharacter);
+    addLowerCase();
     passwordLength--;
   }
 
   if (passwordUpperCase == true) {
-    currentCharacter = alphabet[Math.floor(Math.random() * (alphabet.length))];
-    currentCharacter = currentCharacter.toUpperCase();
-    randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
-    splitPassword.splice(randomPosition,0,currentCharacter);
+    addUpperCase();
     passwordLength--;
   }
   
   if (passwordNumbers == true) {
-    currentCharacter = Math.floor(Math.random() * 10);
-    randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
-    splitPassword.splice(randomPosition,0,currentCharacter);
+    addNumber();
     passwordLength--;
   }
 
   if (passwordSpecialCharacters == true) {
-    currentCharacter = specialCharacters[Math.floor(Math.random() * (specialCharacters.length))];
-    randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
-    splitPassword.splice(randomPosition,0,currentCharacter);
+    addSpecial();
     passwordLength--;
   }
 
+  var characterAdded = false; //flag for when a character is added to allow loop to only add requested characters to generated password
+
   for (let i = 0; i < passwordLength; i++) {
-    characterSet = Math.floor(Math.random() * 3);
-    if characterSet == 0 {
-      
+    characterAdded = false;
+    while (characterAdded == false) {
+      characterSet = Math.floor(Math.random() * 4);
+      randomPosition = Math.floor(Math.random() * (splitPassword.length + 1));
+      if (characterSet == 0 && passwordLowerCase == true) {
+        addLowerCase();
+        characterAdded = true;
+      }
+      if (characterSet == 1 && passwordUpperCase == true) {
+        addUpperCase();
+        characterAdded = true;
+      }
+      if (characterSet == 2 && passwordNumbers == true) {
+        addNumber();
+        characterAdded = true;
+      }
+      if (characterSet == 3 && passwordSpecialCharacters == true) {
+        addSpecial();
+        characterAdded = true;
+      }
     }
   }
 
